@@ -1,21 +1,29 @@
 let w2, h2;
 let title = 0, playing = 1;
-let state;
+let state, prev_state, state_time;
+let bgm;
 
-function preload() {}
+function preload() {
+  bgm = loadSound('assets/bgm.mp3');
+}
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   state = 0; w2 = width/2; h2 = height/2;
+  bgm.setLoop(true);
 }
 
 function draw() {
   background(220);
+  if (prev_state != state) state_time = 0;
+  prev_state = state;
   if (state == title) titleDraw();
   if (state == playing) playingDraw();
+  state_time++;
 }
 
 function titleDraw() {
+  if (state_time == 50) bgm.play();
   background("#123");
   // text
   textAlign(CENTER);
