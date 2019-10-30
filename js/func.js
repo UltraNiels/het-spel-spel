@@ -5,3 +5,4 @@ const rotatedText = (text0, x, y, amount) => {
   text(text0, 0, 0);
   pop();
 }
+let mouse_click_actions = [];

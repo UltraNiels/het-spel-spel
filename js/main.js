@@ -15,7 +15,15 @@ function setup() {
   state = 0; w2 = width/2; h2 = height/2;
   bgm.setLoop(true);
   muted = true;
-  sound_icon_rect = new Rect(50, 50, max(offIcon.width, onIcon.width), max(offIcon.height, onIcon.height))
+  sound_icon_rect = new Rect(50, 50, max(offIcon.width, onIcon.width), max(offIcon.height, onIcon.height));
+  mouse_click_actions.push(() => {
+    if (new Rect(mouseX, mouseY, 1, 1).hit(sound_icon_rect)) {
+      muted = !muted;
+      masterVolume(muted ? 0 : 1);
+      userStartAudio()
+    }
+  })
+  playButton = new Rect(width/3, height/2.5, width/3, height/5, 20, '#34ebd2')
 }
 
 function draw() {
@@ -35,10 +43,4 @@ function windowResized() {
   w2 = width/2; h2 = height/2;
 }
 
-function mouseClicked() {
-  if (new Rect(mouseX, mouseY, 1, 1).hit(sound_icon_rect)) {
-    muted = !muted;
-    masterVolume(muted ? 0 : 1);
-    userStartAudio()
-  }
-}
+function mouseClicked() {for (let func of mouse_click_actions) func();}

@@ -8,4 +8,14 @@ function titleDraw() {
   rotatedText('Het spel-spel', w2, height/8, sin(frameCount*0.05)*0.03);
   textSize(min(width / 25, height/ 25));
   text('Het spel gemaakt om te spel(l)en!', w2, height/8+height/13);
+  playButton.show();
+  fill('#fff');
+  textAlign(CENTER, CENTER);
+  text('Begin!', playButton.mx, playButton.my);
 }
+
+mouse_click_actions.push(() => {
+  if (state == title && new Rect(mouseX, mouseY, 1, 1).hit(playButton)){
+    state = playing;
+  }
+})
