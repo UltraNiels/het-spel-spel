@@ -1,8 +1,8 @@
-let w2, h2;
-let title = 0, playing = 1;
-let state, prev_state, state_time;
-let bgm;
-let offIcon, onIcon, sound_icon_rect;
+let w2, h2; 
+let title = 0, playing = 1; // states
+let state, prev_state, state_time; //state machiene
+let bgm, muted; //sound
+let offIcon, onIcon, sound_icon_rect; //mute button
 
 function preload() {
   bgm = loadSound('assets/bgm.mp3');
@@ -14,7 +14,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   state = 0; w2 = width/2; h2 = height/2;
   bgm.setLoop(true);
-  masterVolume(0);
+  muted = true;
   sound_icon_rect = new Rect(50, 50, max(offIcon.width, onIcon.width), max(offIcon.height, onIcon.height))
 }
 
@@ -27,7 +27,7 @@ function draw() {
   if (state == playing) playingDraw();
   state_time++;
 
-  image(((getMasterVolume() == 0) ? offIcon : onIcon), 50, 50)
+  image(muted ? offIcon : onIcon, 50, 50)
 }
 
 function windowResized() {
@@ -36,9 +36,9 @@ function windowResized() {
 }
 
 function mouseClicked() {
-  if (value === 0) {
-    value = 255;
-  } else {
-    value = 0;
+  if (new Rect(mouseX, mouseY, 1, 1).hit(sound_icon_rect)) {
+    muted = !muted;
+    masterVolume(muted ? 0 : 1);
+    userStartAudio()
   }
 }
