@@ -29,7 +29,9 @@ function setup() {
 function draw() {
   background(220);
 
-  if (prev_state != state) state_time = 0;
+  if (prev_state != state) {
+    state_time = 0;
+  }
   prev_state = state;
   if (state == title) titleDraw();
   if (state == playing) playingDraw();
