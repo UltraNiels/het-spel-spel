@@ -18,8 +18,8 @@ function titleDraw() {
   text('Begin!', playButton.mx, playButton.my);
 }
 
-mouse_click_actions.push(() => {
-  if (state == title && new Rect(mouseX, mouseY, 1, 1).hit(playButton)){
-    state = playing;
-  }
-})
+function titleEnd() {
+  console.log('TitleEnd');
+}
+
+mouse_click_actions.push(() => {if (state == title && mouseHit(playButton)) state = playing});

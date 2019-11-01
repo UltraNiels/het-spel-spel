@@ -1,5 +1,5 @@
 let w2, h2; 
-let title = 0, playing = 1; // states
+const title = 0, playing = 1; // states
 let state, prev_state, state_time; //state machiene
 let bgm, muted; //sound
 let offIcon, onIcon, sound_icon_rect; //mute button
@@ -17,10 +17,10 @@ function setup() {
   muted = true;
   sound_icon_rect = new Rect(50, 50, max(offIcon.width, onIcon.width), max(offIcon.height, onIcon.height));
   mouse_click_actions.push(() => {
-    if (new Rect(mouseX, mouseY, 1, 1).hit(sound_icon_rect)) {
+    if (mouseHit(sound_icon_rect)) {
       muted = !muted;
       masterVolume(muted ? 0 : 1);
-      userStartAudio()
+      userStartAudio();
     }
   })
 }
@@ -29,15 +29,19 @@ function draw() {
   background(220);
 
   if (prev_state != state) {
+    if (prev_state == title) titleEnd();
+    if (prev_state == playing) playingEnd();
     state_time = 0;
     if (state == title) titleSetup();
     if (state == playing) playingSetup();
   }
+
   prev_state = state;
   if (state == title) titleDraw();
   if (state == playing) playingDraw();
   state_time++;
 
+  // always draw
   image(muted ? offIcon : onIcon, 50, 50)
 }
 
