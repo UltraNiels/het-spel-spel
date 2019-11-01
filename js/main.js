@@ -14,6 +14,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   state = 0; w2 = width/2; h2 = height/2;
   bgm.setLoop(true);
+  bgm.playMode('untilDone');
   muted = true;
   sound_icon_rect = new Rect(50, 50, max(offIcon.width, onIcon.width), max(offIcon.height, onIcon.height));
   mouse_click_actions.push(() => {
