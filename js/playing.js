@@ -4,12 +4,18 @@ let wordlist = groep6, words = groep6Woorden, verbs = groep6WerkWoorden;
 function newWord() {
 	if (state != playing) return;
 	cat = random(wordlist);
-	word = random(cat);
 	catname = cat[0];
+	return word = random(cat);
 }
 
 mouse_click_actions.push(newWord);
-newWord();
+
+function playingSetup() {
+	newWord();
+}
+
 function playingDraw() {
-	text(random(random(word)), w2, h2);
+	background('#321');
+	textSize(min(windowWidth/10, windowHeight/10));
+	text(`${word} (${catname})`, w2, h2/2);
 }

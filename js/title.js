@@ -1,5 +1,9 @@
+function titleSetup() {
+  playButton = new Rect(width/3, height/2.5, width/3, height/5, 20, '#34ebd2');
+  bgm.play();
+}
+
 function titleDraw() {
-  if (state_time == 50) bgm.play();
   background("#123");
   // text
   textAlign(CENTER);

@@ -23,7 +23,6 @@ function setup() {
       userStartAudio()
     }
   })
-  playButton = new Rect(width/3, height/2.5, width/3, height/5, 20, '#34ebd2')
 }
 
 function draw() {
@@ -31,6 +30,8 @@ function draw() {
 
   if (prev_state != state) {
     state_time = 0;
+    if (state == title) titleSetup();
+    if (state == playing) playingSetup();
   }
   prev_state = state;
   if (state == title) titleDraw();
