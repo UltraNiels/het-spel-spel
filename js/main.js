@@ -2,12 +2,14 @@ let w2, h2;
 const title = 0, playing = 1; // states
 let state, prev_state, state_time; //state machiene
 let bgm, muted; //sound
-let offIcon, onIcon, sound_icon_rect; //mute button
+let offIcon, onIcon, backIcon;
+let sound_icon_rect;
 
 function preload() {
   bgm = loadSound('assets/bgm.mp3');
   offIcon = loadImage('assets/sound-off.png');
   onIcon = loadImage('assets/sound-on.png');
+  backIcon = loadImage('assets/back.png')
 }
 
 function setup() {
