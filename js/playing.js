@@ -29,7 +29,7 @@ function playingSetup() {
 function playingDraw() {
 	background('#321');
 	textSize(min(windowWidth/10, windowHeight/10));
-	text(`${word} (${catname})`, w2, h2/2);
+	text(word, w2, h2/2);
 	image(backIcon, back_icon_rect.x, back_icon_rect.y);
 	if (input.value() == word) {
 		input.value('');
