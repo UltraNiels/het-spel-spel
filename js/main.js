@@ -55,9 +55,9 @@ function draw() {
   if (showBackIcon) image(backIcon, back_icon_rect.x, back_icon_rect.y);
 }
 
-function windowResized() {
+function windowResized() {for (let func of resize_actions) func();}
+resize_actions.push(()=>{
   resizeCanvas(windowWidth, windowHeight);
   w2 = width/2; h2 = height/2;
-}
-
+});
 function mouseClicked() {for (let func of mouse_click_actions) func();}

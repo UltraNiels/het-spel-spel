@@ -1,8 +1,15 @@
+let wSwitch, vSwitch, playButton;
 
 function titleSetup() {
   playButton = new Rect(width/3, height/2.5, width/3, height/5, 20, '#34ebd2');
   bgm.play();
   showBackIcon = false;
+  wSwitch = createCheckbox('Werkwoorden', true);
+  vSwitch = createCheckbox('Woorden', true);
+  vSwitch.addClass('toggle');
+  vSwitch.position(width/3, height*0.7);
+  wSwitch.position((width/3)*2, height*0.7);
+
 }
 
 function titleDraw() {
@@ -25,3 +32,6 @@ function titleEnd() {
 }
 
 mouse_click_actions.push(() => {if (state == title && mouseHit(playButton)) state = playing});
+resize_actions.push(()=>{
+  if (state == title) playButton = new Rect(width/3, height/2.5, width/3, height/5, 20, '#34ebd2');
+})
