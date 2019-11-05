@@ -1,18 +1,18 @@
 let word, cat, catname;
 let wordlist, words, verbs;
-let back_icon_rect;
+let input;
+let score;
 
 function newWord() {
 	if (state != playing) return;
 	cat = random(wordlist);
 	catname = cat[0];
+	input.value('');
+	score++;
 	return word = random(cat);
 }
 
-mouse_click_actions.push(newWord);
-mouse_click_actions.push(()=>{
-	if (state == playing && mouseHit(back_icon_rect)) state = title;
-})
+// mouse_click_actions.push(newWord);
 
 function playingSetup() {
   	wordlist = groep6; words = groep6Woorden; verbs = groep6WerkWoorden;
@@ -23,18 +23,15 @@ function playingSetup() {
 	input.style('font-size', `${min(width / 10, height/ 10)}px`)
   	input.center();
 	newWord();
-  	back_icon_rect = new Rect(sound_icon_rect.w+sound_icon_rect.x+20, sound_icon_rect.y, backIcon.width, backIcon.height);
+	showBackIcon = true;
+	score = 0;
 }
 
 function playingDraw() {
-	background('#321');
+	background('#2b5922');
 	textSize(min(windowWidth/10, windowHeight/10));
 	text(word, w2, h2/2);
-	image(backIcon, back_icon_rect.x, back_icon_rect.y);
-	if (input.value() == word) {
-		input.value('');
-		newWord();
-	}
+	if (input.value() == word) newWord();
 }
 
 function playingEnd() {
