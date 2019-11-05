@@ -29,6 +29,8 @@ function titleDraw() {
 
 function titleEnd() {
   console.log('TitleEnd');
+  vSwitch.remove();
+  wSwitch.remove();
 }
 
 mouse_click_actions.push(() => {if (state == title && mouseHit(playButton)) state = playing});

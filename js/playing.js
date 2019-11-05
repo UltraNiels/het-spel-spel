@@ -2,7 +2,6 @@ let word, cat, catname;
 let wordlist, words, verbs;
 let input;
 let score;
-let test;
 
 function newWord() {
 	if (state != playing) return;
