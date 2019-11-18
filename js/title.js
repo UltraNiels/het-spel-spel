@@ -1,14 +1,16 @@
-let wSwitch, vSwitch, playButton;
+let wSwitch, vSwitch, playButton, words_checked, verbs_checked;
 
 function titleSetup() {
   playButton = new Rect(width/3, height/2.5, width/3, height/5, 20, '#34ebd2');
   bgm.play();
   showBackIcon = false;
-  wSwitch = createCheckbox('Werkwoorden', true);
-  vSwitch = createCheckbox('Woorden', true);
-  vSwitch.addClass('toggle');
+  vSwitch = createCheckbox('Werkwoorden', true);
+  wSwitch = createCheckbox('Woorden', true);
+  // vSwitch.addClass('toggle');
   vSwitch.position(width/3, height*0.7);
-  wSwitch.position((width/3)*2, height*0.7);
+  wSwitch.position((width/4)*2, height*0.7);
+  vSwitch.style('color', '#fff');
+  wSwitch.style('color', '#fff'); 
 
 }
 
@@ -29,6 +31,8 @@ function titleDraw() {
 
 function titleEnd() {
   console.log('TitleEnd');
+  words_checked = wSwitch.checked();
+  verbs_checked = vSwitch.checked();
   vSwitch.remove();
   wSwitch.remove();
 }

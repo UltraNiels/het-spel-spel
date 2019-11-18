@@ -1,11 +1,11 @@
 let word, cat, catname;
-let wordlist, words, verbs;
+let wordlist, words, verbs, act_list;
 let input;
 let score;
 
 function newWord() {
 	if (state != playing) return;
-	cat = random(wordlist);
+	cat = random(act_list);
 	catname = cat[0];
 	input.value('');
 	return word = random(cat);
@@ -29,6 +29,7 @@ function playingSetup() {
   		input.center();
   	}
   	})
+  	act_list = words_checked && verbs_checked ? wordlist : (words_checked ? words : (verbs_checked ? verbs : [['Geen woorden.']]));
 	newWord();
 	showBackIcon = true;
 	score = 0;
@@ -41,7 +42,7 @@ function playingDraw() {
 	textSize(min(windowWidth/15, windowHeight/15));
 	text(`Score: ${score}`, w2, height*0.9)
 	if (input.value() == word) {
-		newWord();
+		newWord()
 		score++;
 	}
 }
