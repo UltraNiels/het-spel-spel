@@ -1,8 +1,17 @@
 let wSwitch, vSwitch, playButton, words_checked, verbs_checked;
 
+add_action('title', preload_actions, ()=>{
+  title_bgm = loadSound('assets/title_bgm.mp3');
+});
+
+add_action('title', setup_actions, ()=> {
+  title_bgm.setLoop(true);
+  title_bgm.playMode('untilDone');
+})
+
 function titleSetup() {
   playButton = new Rect(width/3, height/2.5, width/3, height/5, 20, '#34ebd2');
-  bgm.play();
+  title_bgm.play();
   showBackIcon = false;
   vSwitch = createCheckbox('Werkwoorden', true);
   wSwitch = createCheckbox('Woorden', true);
